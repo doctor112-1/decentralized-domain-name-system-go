@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ type Block struct {
 	Timestamp  uint64
 	Nonce      uint32
 	Target     uint32
-	DomainName string
+	DoutilsName string
 	Hash       string
 	HashRecord string
 	PublicKey  string
