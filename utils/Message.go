@@ -38,11 +38,13 @@ func DeserializeMessage(d []byte) *Message {
 	return &Messagemessage
 }
 
-func CreateMessage(command string, serializedPayload []byte) {
+func CreateMessage(command string, serializedPayload []byte) *Message {
 	var Message Message
 
 	Message.Version = 1
 	Message.Command = command
 	Message.Payload = string(serializedPayload)
 	Message.Length = uint32(unsafe.Sizeof(Message.Version)) + uint32(unsafe.Sizeof(Message.Command)) + uint32(unsafe.Sizeof(Message.Payload))
+
+	return &Message
 }
