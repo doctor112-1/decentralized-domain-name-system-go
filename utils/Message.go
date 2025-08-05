@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/gob"
 	"log"
+	"unsafe"
 )
 
 type Message struct {
@@ -35,4 +36,13 @@ func DeserializeMessage(d []byte) *Message {
 	}
 
 	return &Messagemessage
+}
+
+func CreateMessage(command string, serializedPayload []byte) {
+	var Message Message
+
+	Message.Version = 1
+	Message.Command = command
+	Message.Payload = string(serializedPayload)
+	Message.Length = uint32(unsafe.Sizeof(Message.Version)) + uint32(unsafe.Sizeof(Message.Command)) + uint32(unsafe.Sizeof(Message.Payload))
 }
